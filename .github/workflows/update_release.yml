@@ -1,0 +1,22 @@
+name: Create release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: version without release
+        type: string
+jobs:
+  create-release:
+    name: Create a release based on version received
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Create release on rockstor/rockstor-jslibs
+        id: create-jslibs-release
+        run: |
+          gh release create ${{ inputs.version }} \
+          --notes "Tagging for next rockstor-core release." \
+          --title "${{ inputs.version }}" \
+          -R FroggyFlox/testrepo-dep1

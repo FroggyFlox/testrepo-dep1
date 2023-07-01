@@ -23,5 +23,4 @@ jobs:
           gh release create ${{ inputs.version }} \
           --notes "Tagging for next rockstor-core release." \
           --title "${{ inputs.version }}" \
-          --target ${{ inputs.target_branch }} \
-          -R FroggyFlox/testrepo-dep1
+          --target ${{ inputs.target_branch }}

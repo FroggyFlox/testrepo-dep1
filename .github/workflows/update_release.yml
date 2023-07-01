@@ -6,6 +6,10 @@ on:
         required: true
         description: version without release
         type: string
+      target_branch:
+        required: true
+        description: branch to target when creating the release
+        type: string
 jobs:
   create-release:
     name: Create a release based on version received
@@ -19,4 +23,5 @@ jobs:
           gh release create ${{ inputs.version }} \
           --notes "Tagging for next rockstor-core release." \
           --title "${{ inputs.version }}" \
+          --target ${{ inputs.target_branch }} \
           -R FroggyFlox/testrepo-dep1
